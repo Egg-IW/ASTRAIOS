@@ -151,8 +151,9 @@ gosub InitI2C
 do
    sertxd ("Waiting for start pin to be removed",13,10)
    gosub UploadData
+   'START_PIN_VAL = 1 test
 loop while START_PIN_VAL = 0
-
+		
 
 '-------------------------------------------------------------
 ' Mission program begins here
