@@ -1,8 +1,9 @@
 '----------------------------------------------------------------------
-' Bellevue Schools Flight and Space Class 2019
+' ASTRAIOS 2020
 ' Written by Dan Ruder, 4/21/2015 - 5/28/2019
+' Modified by Yiyang (Ian) Wang, 3/16-3/21
 '
-' Reads a temperature sensor on B.1 input, a humdity sensor on B.5 every 1  
+' Reads a temperature sensor on B.1 input, a humdity sensor on B.2 every 1  
 ' second, writes to 32K EEPROM.
 '
 ' Example satellite mission program
@@ -234,7 +235,7 @@ UploadData:
    do
       gosub ReadEEPROM
       i = i + 3
-      sertxd (#n, ",", #temp_reading, ",", #humidity_reading, ",", #uv_Reading 13,10)
+      sertxd (#n, ",", #temp_reading, ",", #humidity_reading, ",", #uv_Reading, 13,10)
       
       
       ' Periodically check the START PIN and return early if it has
