@@ -1,10 +1,10 @@
 '----------------------------------------------------------------------
-' ASTRAIOS 2020
+' ASTRAIOS & Flight and Space Class 2020
 ' Written by Dan Ruder, 4/21/2015 - 5/28/2019
 ' Modified by Yiyang (Ian) Wang, 3/16-3/21
 '
 ' Reads a temperature sensor on B.1 input, a humdity sensor on B.2 every 1  
-' second, writes to 32K EEPROM.
+' second, and UW sensor on B.3 writes to 32K EEPROM.
 '
 ' Example satellite mission program
 '
@@ -67,7 +67,7 @@
 '
 ' d. Stop recording sensor data when all memory is filled up, but 
 '    let the camera continue to operate because flight may have 
-'    lasted longer than expected.
+'    lasted longer than expected.   - using GOPRO not used anymore!
 '
 ' This program cannot use PICAXE parallel tasks or the time special
 ' function register because these features use the same timer as the
@@ -177,7 +177,7 @@ do
       gosub WriteEEPROM
       i = i + 3
 
-      sertxd ("T= ",#temp_reading, "H= ", #humidity_reading, "UV= ", #UV_reading, 13,10)  ' output reading for easy testing
+      sertxd ("T= ",#temp_reading, " H= ", #humidity_reading, " UV= ", #UV_reading, 13,10)  ' output reading for easy testing
 
       ' Compensate for time spent writing to EEPROM since it was long
       loopTime = loopTime - EEPROM_WRITE_DELAY
