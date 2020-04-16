@@ -86,8 +86,8 @@
 '-------------------------------------------------------------
 ' Variables - make sure the b variables don't overlap the w variables
 '-------------------------------------------------------------
-symbol temp_reading     = b0  ' variables to hold sensor readings for logging
-symbol humidity_reading = b1
+symbol humidity_reading = b0 ' variables to hold sensor readings for logging
+symbol temp_reading     = b1 
 symbol uv_reading       = b2
 
 
@@ -171,16 +171,15 @@ do
    ' memory is full
    '-------------------------------------------------------------
    if i < MEMORY_SIZE then
-      readadc TEMP_SEN,     temp_reading
-;      readadc UV_SEN,       uv_reading	
-      readadc HUMIDITY_SEN, humidity_reading
-	
+	   
+	readadc HUMIDITY_SEN, humidity_reading   
+      readadc TEMP_SEN,     temp_reading	
 	readadc UV_SEN, uv_reading
 
       gosub WriteEEPROM
       i = i + 3
 
-      sertxd ("T= ",#temp_reading, " H= ", #humidity_reading, " UV= ", #UV_reading, 13,10)  ' output reading for easy testing
+      sertxd ("H= ",#humidity_reading, " T= ", #temp_reading, " UV= ", #UV_reading, 13,10)  ' output reading for easy testing
 
       ' Compensate for time spent writing to EEPROM since it was long
       loopTime = loopTime - EEPROM_WRITE_DELAY
@@ -229,7 +228,7 @@ end
 '-------------------------------------------------------------
 UploadData:
 
-   sertxd ("Reading,Temp, Humidity, UV", 13,10)
+   sertxd ("Reading,Humidity, Temperature, UV", 13,10)
 	
    let i  = 0
    let n  = 1
@@ -238,7 +237,7 @@ UploadData:
    do
       gosub ReadEEPROM
       i = i + 3
-      sertxd (#n, ",", #temp_reading, ",", #humidity_reading, ",", #uv_Reading, 13,10)
+      sertxd (#n, ",", #humidity_reading, ",", #temp_reading, ",", #uv_Reading, 13,10)
       
       
       ' Periodically check the START PIN and return early if it has
@@ -276,18 +275,18 @@ return
 
 
 '---------------------------------------------------------
-' Arguments:  i, temp_reading, humidity_reading
+' Arguments:  i, humidity_reading, temp_reading, uv_reading
 '---------------------------------------------------------
 WriteEEPROM:
-   hi2cout i, (temp_reading, humidity_reading, uv_reading)	
+   hi2cout i, (humidity_reading, temp_reading, uv_reading)	
    pause EEPROM_WRITE_DELAY  ' Give EEPROM time to finish the write
 return
 
 
 '---------------------------------------------------------
-' Arguments:  i, temp_reading, humidity_reading
+' Arguments:  i, humidity_reading,temp_reading, uv_reading
 '---------------------------------------------------------
 ReadEEPROM:
-	hi2cin i, (temp_reading, humidity_reading, uv_reading)
+	hi2cin i, (humidity_reading, temp_reading, uv_reading)
 return
 
