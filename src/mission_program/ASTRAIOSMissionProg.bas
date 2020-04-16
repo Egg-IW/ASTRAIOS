@@ -179,7 +179,7 @@ do
       gosub WriteEEPROM
       i = i + 3
 
-      sertxd ("H= ",#humidity_reading, " T= ", #temp_reading, " UV= ", #UV_reading, 13,10)  ' output reading for easy testing
+      sertxd ("H= ",#humidity_reading, " T= ", #temp_reading, " UV= ",#uv_reading, 13,10)  ' output reading for easy testing
 
       ' Compensate for time spent writing to EEPROM since it was long
       loopTime = loopTime - EEPROM_WRITE_DELAY
@@ -237,7 +237,7 @@ UploadData:
    do
       gosub ReadEEPROM
       i = i + 3
-      sertxd (#n, ",", #humidity_reading, ",", #temp_reading, ",", #uv_Reading, 13,10)
+      sertxd (#n, ",", #humidity_reading, ",", #temp_reading, ",", #uv_reading, 13,10)
       
       
       ' Periodically check the START PIN and return early if it has
