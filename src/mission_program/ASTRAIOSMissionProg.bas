@@ -102,8 +102,10 @@ symbol loopTime  = w5  ' used to improve accuracy of main loop's runtime (units 
 ' Sensor names -- verify that you connect the right sensor to the right pin
 ' change these if you connect sensors to different pins
 '-------------------------------------------------------------
-symbol TEMP_SEN      = B.1
-symbol HUMIDITY_SEN  = B.2
+
+'fixed bug 4_15:740PM switched HUM and T around'
+symbol HUMIDITY_SEN  = B.1
+symbol TEMP_SEN      = B.2
 symbol UV_SEN        = B.5
 
 symbol START_PIN_VAL = pinC.3  ' Use this form to read the start pin
