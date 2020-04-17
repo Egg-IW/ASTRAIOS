@@ -228,7 +228,7 @@ end
 '-------------------------------------------------------------
 UploadData:
 
-   sertxd ("Reading,Humidity, Temperature, UV", 13,10)
+   sertxd ("Reading: Humidity, Temperature, UV", 13,10)
 	
    let i  = 0
    let n  = 1
